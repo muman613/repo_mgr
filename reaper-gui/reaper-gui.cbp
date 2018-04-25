@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="reaper-gui" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/reaper-gui" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DwxDEBUG_LEVEL=1" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/reaper-gui" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-D_NDEBUG=1" />
+					<Add option="-DwxDEBUG_LEVEL=0" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-std=c++11" />
+			<Add option="`wx-config --cflags`" />
+		</Compiler>
+		<Linker>
+			<Add option="`wx-config --libs`" />
+			<Add library="dl" />
+		</Linker>
+		<Unit filename="CheckoutThread.cpp" />
+		<Unit filename="CheckoutThread.h" />
+		<Unit filename="ReaperDialog.cpp" />
+		<Unit filename="ReaperDialog.h" />
+		<Unit filename="forms/reapergui.fbp" />
+		<Unit filename="functions.cpp" />
+		<Unit filename="functions.h" />
+		<Unit filename="reaper.h" />
+		<Unit filename="reaperEntry.cpp" />
+		<Unit filename="reaperEntry.h" />
+		<Unit filename="reaperGUI.cpp" />
+		<Unit filename="reaperGUI.h" />
+		<Unit filename="reaper_guiApp.cpp" />
+		<Unit filename="reaper_guiApp.h" />
+		<Unit filename="reapertypes.h" />
+		<Unit filename="sqlite3.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sqlite3.h" />
+		<Unit filename="utils.cpp" />
+		<Unit filename="utils.h" />
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<lib_finder disable_auto="1" />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
