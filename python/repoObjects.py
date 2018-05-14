@@ -11,6 +11,9 @@ class repoDatabase:
     """
     Class represents the repository database
     """
+    db = None
+    db_path = None
+
     def __init__(self, db_path):
         self.db_path = db_path
         if os.path.exists(db_path):
@@ -30,7 +33,7 @@ class repoDatabase:
                     `version_minor` INTEGER NOT NULL,
                     `version_date`  TEXT NOT NULL
                 );
-                CREATE TABLE repos (branch varchar, subbranch varchar, checkout varchar, owner varchar, purpose varchar, category varchar, type varchar);
+                CREATE TABLE repos (branch varchar, subbranch varchar, checkout varchar, owner varchar, purpose varchar, category varchar, type varchar,  UNIQUE(branch, subbranch) ON CONFLICT FAIL);
                 CREATE INDEX repos_index on repos(branch asc,subbranch asc);
                 COMMIT;
             """
@@ -67,6 +70,19 @@ class repoDatabase:
         :return:
         """
         with self.db as curs:
-            curs.execute("INSERT INTO repos VALUES(?,?,?,?,?,?,?)",
-                         (branch, subbranch, checkout, owner, purpose, category, type))
+            try:
+                curs.execute("INSERT INTO repos VALUES(?,?,?,?,?,?,?)",
+                             (branch, subbranch, checkout, owner, purpose, category, type))
+                return True
+            except sql.IntegrityError as e:
+                return False
+
+    def get_branch_list(self):
+        pass
+
+    def dump_rows(self):
+        curs = self.db.cursor()
+        curs.execute('SELECT * FROM repos')
+        for row in curs:
+            print(row)
 
